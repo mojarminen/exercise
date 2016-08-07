@@ -34,15 +34,24 @@ def create_table():
 			away_team_yellow_cards integer,
 			home_team_red_cards integer,
 			away_team_red_cards integer,
-            home_team_possession integer,
-            away_team_possession integer,
-			PRIMARY KEY (id)
+            home_team_possession real,
+            away_team_possession real,
+            home_team_touches integer,
+            away_team_touches integer,
+            home_team_passes integer,
+            away_team_passes integer,
+            home_team_tackles integer,
+            away_team_tackles integer,
+            home_team_clearances integer,
+            away_team_clearances integer,
+			PRIMARY KEY (id),
+            UNIQUE (date, home_team, away_team)
 		)''')
 		
 	c.execute('''
 		CREATE TABLE odds_1X2
 		(
-			id serial,
+			id integer,
 			match integer,
 			booker text,
 			home_win real,
