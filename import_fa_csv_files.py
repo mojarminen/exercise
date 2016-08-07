@@ -6,7 +6,7 @@ DATABASE_FILE = 'fa_stats.db'
 DB_CONN = sqlite3.connect(DATABASE_FILE)
 
 DATAFILES = {
-                '../fa_datafiles/2015_2016/E0.csv': {
+                'fa_datafiles/2015_2016/E0.csv': {
                     'match_stat_columns': {
                         'division': 'A', 
                         'date': 'B', 
@@ -80,9 +80,15 @@ def insert_match_details_to_db(datarow, columns):
     # Insert to db.
     cur.execute(
         "INSERT INTO matches ("
-        "  division, date, home_team, away_team, full_time_home_team_goals, full_time_away_team_goals"
+        "  division, date, home_team, away_team, full_time_home_team_goals, full_time_away_team_goals, half_time_home_team_goals, half_time_away_team_goals, referee, home_team_shots, "
+        "  away_team_shots, home_team_shots_on_target, away_team_shots_on_target, home_team_hit_woodwork, away_team_hit_woodwork, home_team_corners, away_team_corners, home_team_fouls_committed, "
+        "  away_team_fouls_committed, home_team_offsides, away_team_offsides, home_team_yellow_cards, away_team_yellow_cards, home_team_red_cards, away_team_red_cards, home_team_possession, "
+        "  away_team_possession"
         ") VALUES ("
-        "  :division, :date, :home_team, :away_team, :full_time_home_team_goals, :full_time_away_team_goals"
+        "  :division, :date, :home_team, :away_team, :full_time_home_team_goals, :full_time_away_team_goals, :half_time_home_team_goals, :half_time_away_team_goals, :referee, :home_team_shots, "
+        "  :away_team_shots, :home_team_shots_on_target, :away_team_shots_on_target, :home_team_hit_woodwork, :away_team_hit_woodwork, :home_team_corners, :away_team_corners, :home_team_fouls_committed, "
+        "  :away_team_fouls_committed, :home_team_offsides, :away_team_offsides, :home_team_yellow_cards, :away_team_yellow_cards, :home_team_red_cards, :away_team_red_cards, :home_team_possession, "
+        "  :away_team_possession"
         ")", db_data)
     
     # Check and return the id for the inserted match.
@@ -94,6 +100,9 @@ def insert_match_details_to_db(datarow, columns):
 
 
 def insert_1X2_odds_to_db(matchid, data, columns):
+    global DB_CONN
+    cur = DB_CONN.cursor()
+
     pass
 
 
