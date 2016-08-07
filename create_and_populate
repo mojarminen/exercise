@@ -1,0 +1,4 @@
+#!/bin/bash
+rm -f fa_stats.db
+python create_fa_db.py
+python import_fa_csv_files.py
